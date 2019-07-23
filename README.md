@@ -8,8 +8,12 @@
 1. Copy all the files in here to `/opt/s3backup` on your machine.
 2. Then change the permissions of the scripts so they can be executed, like this: `chmod +x /opt/s3backup/{backup,delete}.sh`.
 3. Then `cp /opt/s3backup/credentials.dist /opt/s3backup/credentials`, and then put your AWS programatic credentials, prefered region and the MYSQL credentials for the SQL backup inside that file.
-4. Finally, create a file named `directories` inside the project folder, and add each directory to backup, one per line with no slashes at the end. Then follow it with `-->` and the name of the ddbb to backup!
+4. Finally, create a file named `directories` inside the project folder, and add each directory to backup, one per line with no slashes at the end. Then you can follow it with `-->` and the name of a ddbb you may want to backup!
 
+### Line without Database to backup
+`/directory/to/backup`
+
+### Line with Database to backup
 `/directory/to/backup-->ddbb_name`
 
 Easy as pie! 🥧
