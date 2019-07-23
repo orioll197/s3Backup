@@ -25,10 +25,13 @@ for i in $DIRS; do
     DDBB_NAME=${i#*-->}
     DIRECTORY=${i%-->*}
     FILENAME=${DIRECTORY##*/}
+    if [ "$DDBB_NAME" != "$DIRECTORY" ]; then
+        echo "Strings are equal"
+        mysqldump -h $DDBB_ENDPOINT  -u $DDBB_USER -p$DDBB_PASSWORD --port=$DDBB_PORT     --single-transaction     --routines     --triggers     --databases  $DDBB_NAME > ${DDBB_NAME}.sql
+        aws s3 cp /tmp/${DDBB_NAME}.sql s3://${BUCKET}/${FILENAME}/${TODAY}/backup-${DDBB_NAME}-${TODAY}.sql
+        rm -rf /tmp/${DDBB_NAME}.sql
+    fi
     tar zcvf ${FILENAME}.tar.gz $DIRECTORY
-    mysqldump -h $DDBB_ENDPOINT  -u $DDBB_USER -p$DDBB_PASSWORD --port=$DDBB_PORT     --single-transaction     --routines     --triggers     --databases  $DDBB_NAME > ${DDBB_NAME}.sql
     aws s3 cp /tmp/${FILENAME}.tar.gz s3://${BUCKET}/${FILENAME}/${TODAY}/backup-${FILENAME}-${TODAY}.tar.gz
-    aws s3 cp /tmp/${DDBB_NAME}.sql s3://${BUCKET}/${FILENAME}/${TODAY}/backup-${DDBB_NAME}-${TODAY}.sql
     rm -rf /tmp/${FILENAME}.tar.gz
-    rm -rf /tmp/${DDBB_NAME}.sql
 done
