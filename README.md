@@ -23,6 +23,6 @@ Easy as pie! 🥧
 `0 0 * * * root test -x /opt/s3backup/backup.sh && bash /opt/s3backup/backup.sh`<br>
 `0 2 * * * root test -x /opt/s3backup/delete.sh && bash /opt/s3backup/delete.sh`
 
-<!-- ## Restoring -->
+## Restoring
 
-<!-- There is a script called `restore.sh` which will assist you on restoring a lost project. -->
+There is also a script called `restore.sh` which will assist you on restoring a lost project.

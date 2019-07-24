@@ -1,0 +1,9 @@
+cr1=`echo $'\n.'`
+export cr=${cr1%.}
+export bold=$(tput bold)
+export endbold=$(tput sgr0)
+export red=$(tput setaf 1)
+export green=$(tput setaf 2)
+export yellow=$(tput setaf 3)
+export cyan=$(tput setaf 6)
+export endcolor=$(tput setaf 7)
