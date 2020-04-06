@@ -15,7 +15,8 @@ DIRS=`cat ./directories`
 
 for i in $DIRS; do
 i=`echo $i | rev | cut -f 1 -d"/" | rev`
-    FILENAME=${i##*/}
+    DIRECTORY=${i%-->*}
+    FILENAME=${DIRECTORY##*/}
     DAYLIST=`aws s3 ls s3://$BUCKET/$FILENAME/`
     for j in $DAYLIST; do
         if [ "$j" != "PRE" ]; then
